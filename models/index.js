@@ -21,7 +21,7 @@ Crypto.belongsToMany(Tag, {
 })
 
 // Tags belongToMany Products (through ProductTag)
-Tag.belongsToMany(Product, {
+Tag.belongsToMany(Crypto, {
   through: CryptoTag,
   foreignKey: 'tag_id'
 })
