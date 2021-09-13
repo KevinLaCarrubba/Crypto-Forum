@@ -1,7 +1,7 @@
 const Crypto = require("./Crypto");
 const Category = require("./Category");
 const Tag = require("./Tag");
-const CryptoTag = require("./ProductTag");
+const CryptoTag = require("./CryptoTag");
 
 // Products belongsTo Category
 Crypto.belongsTo(Category, {
