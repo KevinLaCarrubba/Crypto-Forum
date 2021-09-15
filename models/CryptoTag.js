@@ -1,4 +1,4 @@
-const { Models, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class CryptoTag extends Model {}
@@ -11,5 +11,28 @@ CryptoTag.init (
             primaryKey: true,
             autoIncrement: true,
         },
+        crypto_id: {
+            type: DataTypes.INTEGER,
+            reference: {
+                model: 'crypto',
+                key: 'id'
+            }
+        },
+        tag_id: {
+            type: DataTypes.INTEGER,
+            reference: {
+                model: 'tag',
+                key: 'id'
+            }
+        }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'crypto_tag',
     }
-)
+);
+
+module.exports = CryptoTag;
