@@ -1,0 +1,33 @@
+body {
+  background: #eee;
+  overflow: hidden;
+}
+
+.news {
+  width: 160px;
+}
+
+.news-scroll a {
+  text-decoration: none;
+}
+
+.imgSize {
+  height: 20px;
+  width: 20px;
+  margin-left: 3px;
+  margin-right: 0px;
+}
+.dot {
+  height: 6px;
+  width: 6px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 2px !important;
+  background-color: rgb(0, 0, 0);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.bg-black {
+  background-color: black;
+}
