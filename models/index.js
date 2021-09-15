@@ -1,4 +1,4 @@
-
+const Crypto = require("./Crypto");
 const Category = require("./Category");
 const Tag = require("./Tag");
 
@@ -17,6 +17,7 @@ Tag.belongsToMany(Crypto, {
 module.exports = {
   
   Category,
+  Crypto,
   Tag,
   CryptoTag,
 };
