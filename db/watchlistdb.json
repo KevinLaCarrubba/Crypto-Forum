@@ -1,8 +1,8 @@
 [{
-    "name":"Bitcoin",
-    "symbol":"btc",
-    "image":"https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-    "current_price":46368,
-    "high_24": 46830,
-    "low_24": 34669
-}]
+    "name":"bitcoin"
+},{
+    "name":"solana"
+},{
+    "name":"chainlink"
+}
+]

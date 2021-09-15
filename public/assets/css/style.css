@@ -17,6 +17,11 @@ body {
   margin-left: 3px;
   margin-right: 0px;
 }
+
+.card-image {
+  height: 30px;
+  width: 30px;
+}
 .dot {
   height: 6px;
   width: 6px;
