@@ -1,23 +1,13 @@
-const Crypto = require("./Crypto");
-const Category = require("./Category");
-const Tag = require("./Tag");
+const User = require('./User');
+const Comment = require('./Comment')
 
-
-// Categories have many Products
-Category.hasMany(Crypto, {
-  foreignKey: "category_id",
+User.hasMany(Comment, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
 });
 
-// Tags belongToMany Products (through ProductTag)
-Tag.belongsToMany(Crypto, {
-  through: CryptoTag,
-  foreignKey: "tag_id",
+Comment.belongsTo(User, {
+  foreignKey: 'user_id'
 });
 
-module.exports = {
-  
-  Category,
-  Crypto,
-  Tag,
-  CryptoTag,
-};
+module.exports = { User, Comment };

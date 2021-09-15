@@ -56,7 +56,11 @@
             placeholder="Search"
             id="main-search"
           />
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+          <button
+            class="btn btn-outline-primary my-2 my-sm-0"
+            type="submit"
+            id="search-button"
+          >
             Search
           </button>
         </form>
@@ -102,10 +106,46 @@
         </div>
       </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../public/assets/js/cryptoAPI.js"></script>
-    <script src="../public/assets/js/autoSearch.js"></script>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-8">
+          <section id="comment-form">
+            <div>
+              <h3>Comments</h3>
+            </div>
+            <div>
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                placeholder=" New Comment"
+              />
+            </div>
+          </section>
+        </div>
+        <div class="col-4 list-container">
+          <div>
+            <h3 class="watch-list">Watch List</h3>
+          </div>
+          <div class="card">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <a href="https://coinmarketcap.com/currencies/bitcoin/">
+                  <img
+                    src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579"
+                    alt="bitcoin logo"
+                    class="card-image"
+                  />
+                  Bitcoin: $48000 High: $48521 Low:$47652
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../public/assets/js/cryptoTicker.js"></script>
+  <script src="../public/assets/js/watchList.js"></script>
 </html>
