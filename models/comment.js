@@ -1,5 +1,4 @@
-const { getDefaultSettings } = require('http2');
-const { Model, DataTypes } = require('sequelize');
+const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Comment extends Model {}
