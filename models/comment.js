@@ -11,13 +11,9 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        descrption: {
+        body: {
             type: DataTypes.STRING,
-        },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
+            allowNull: false
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -29,7 +25,7 @@ Comment.init(
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'Comment',
