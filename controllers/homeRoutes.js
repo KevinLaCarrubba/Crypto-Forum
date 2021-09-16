@@ -1,31 +1,39 @@
 const router = require('express').Router();
 const { Project, User } = require('../models');
 const withAuth = require('./../helpers/utils/auth');
+const path = require('path');
 
-router.get('/', async (req, res) => {
-  try {
-    // Get all projects and JOIN with user data
-    const projectData = await Project.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
+router.get('/', (req, res) => {
+  res.sendFile(path.join (__dirname, '../public/index.html'));
+})
 
-    // Serialize data so the template can read it
-    const projects = projectData.map((project) => project.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      projects, 
-      logged_in: req.session.logged_in 
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.get('/', async (req, res) => {
+//   try {
+//     // Get all projects and JOIN with user data
+//     const projectData = await Project.findAll({
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['name'],
+//         },
+//       ],
+//     });
+
+//     // Serialize data so the template can read it
+//     const projects = projectData.map((project) => project.get({ plain: true }));
+
+//     // Pass serialized data and session flag into template
+//     res.render('homepage', { 
+//       projects, 
+//       logged_in: req.session.logged_in 
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+//
 
 router.get('/project/:id', async (req, res) => {
   try {
@@ -80,3 +88,9 @@ router.get('/login', (req, res) => {
 });
 
 module.exports = router;
+
+//added session to fix server
+//fixed all user routes including signups and logins
+//updated front end JS fetch links
+//converted homeroutes from handlebars to vanilla HTML
+//created project routes to accommodate that
