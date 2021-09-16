@@ -60,12 +60,52 @@
             class="btn btn-outline-primary my-2 my-sm-0"
             type="submit"
             id="search-button"
+            data-toggle="modal"
+            data-target="#exampleModal"
           >
             Search
           </button>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="coinName"></h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Add to Watchlist
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </nav>
+
     <div class="mt-2 float-left width: 100%">
       <div class="row">
         <div class="col-md-12">
@@ -145,7 +185,7 @@
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
   <script src="../public/assets/js/cryptoTicker.js"></script>
   <script src="../public/assets/js/watchList.js"></script>
 </html>
