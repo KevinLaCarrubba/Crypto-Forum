@@ -49,13 +49,20 @@
             <a class="nav-link" href="#">Sign-Up</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <!-- Search Bar Begin -->
+        <form
+          class="form-inline my-2 my-lg-0"
+          autocomplete="off"
+          action="/action_page.php"
+        >
           <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
+            class="form-control mr-sm-2 autocomplete"
+            type="text"
+            placeholder="Search Crypto"
             id="main-search"
+            name="cryptoSearch"
           />
+
           <button
             class="btn btn-outline-primary my-2 my-sm-0"
             type="submit"
@@ -65,7 +72,8 @@
           >
             Search
           </button>
-          <!-- Modal -->
+          <!-- Search Bar end -->
+          <!-- Modal Start-->
           <div
             class="modal fade"
             id="exampleModal"
@@ -102,6 +110,7 @@
               </div>
             </div>
           </div>
+          <!-- Modal end -->
         </form>
       </div>
     </nav>
@@ -160,6 +169,7 @@
                 placeholder=" New Comment"
               />
             </div>
+            <!-- COMMENTS WILL APPEND HERE I BELIEVE -->
           </section>
         </div>
         <div class="col-4 list-container">
@@ -188,6 +198,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
   <script src="../public/assets/js/cryptoTicker.js"></script>
   <script src="../public/assets/js/watchList.js"></script>
+  <script src="../public/assets/js/autoSearch.js"></script>
 </html>
 
 <!-- add space for comments to get pushed into (comment container) -->
