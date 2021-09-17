@@ -3,10 +3,6 @@ const { Project, User } = require("../models");
 const withAuth = require("./../helpers/utils/auth");
 const path = require("path");
 
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/pages/index.html"));
-});
-
 // router.get('/', async (req, res) => {
 //   try {
 //     // Get all projects and JOIN with user data
@@ -85,7 +81,9 @@ router.get("/login", (req, res) => {
 
   res.render("login");
 });
-
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/pages/index.html"));
+});
 module.exports = router;
 
 //added session to fix server
