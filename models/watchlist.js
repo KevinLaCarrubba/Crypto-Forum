@@ -11,7 +11,7 @@ Watchlist.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    coinName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -28,7 +28,7 @@ Watchlist.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "watchlist",
+    modelName: "Watchlist",
   }
 );
 //SET RELATIONSHIP IN INDEX.JS
