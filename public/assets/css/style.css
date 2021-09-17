@@ -41,3 +41,31 @@ body {
 .bg-black {
   background-color: black;
 }
+
+.overflow {
+  overflow: hidden;
+}
+
+.searchResults {
+  list-style-type: none;
+  overflow: auto;
+  max-height: 200px;
+  position: absolute;
+  background-color: darkgrey;
+  z-index: 1;
+  padding: 0;
+  box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+}
+
+.searchResults li {
+  padding: 8px 8px;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
+}
+
+.searchResults li:hover {
+  background-color: gray;
+  font-weight: bolder;
+  cursor: pointer;
+}

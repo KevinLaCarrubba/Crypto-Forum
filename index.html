@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
       <a class="navbar-brand" href="#">
         <img
-          src="./assets/images/CryptoTalkLogo.jpg"
+          src="./public/assets/images/CryptoTalkLogo.jpg"
           width="50"
           height="50"
           alt=""
@@ -55,13 +55,17 @@
           autocomplete="off"
           action="/action_page.php"
         >
-          <input
-            class="form-control mr-sm-2 autocomplete"
-            type="text"
-            placeholder="Search Crypto"
-            id="main-search"
-            name="cryptoSearch"
-          />
+          <div>
+            <input
+              class="form-control mr-sm-2 autocomplete"
+              type="text"
+              placeholder="Search Crypto"
+              id="main-search"
+              name="cryptoSearch"
+            />
+
+            <div class="autocomplete-box mr-sm-2"></div>
+          </div>
 
           <button
             class="btn btn-outline-primary my-2 my-sm-0"
@@ -194,7 +198,7 @@
       </div>
     </div>
   </body>
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
   <script src="./public/assets/js/cryptoTicker.js"></script>
@@ -202,5 +206,3 @@
   <script src="./public/assets/js/autoSearch.js"></script>
   <!-- add space for comments to get pushed into (comment container) -->
 </html>
-
-
