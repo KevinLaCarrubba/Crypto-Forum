@@ -5,10 +5,11 @@ var coinNameEL = document.getElementById("coinName");
 var modalBody = document.querySelector(".modal-body");
 
 searchButton.addEventListener("click", watchList);
-console.log(watchListInfo);
+// console.log(watchListInfo);
 function watchList() {
   event.preventDefault();
   var watchListData = searchValue.value.trim().toLowerCase();
+  watchListData = watchListData.replace(/\s+/g, "-");
   var apiData = "https://api.coingecko.com/api/v3/coins/" + watchListData;
   searchValue.value = "";
   fetch(apiData)
