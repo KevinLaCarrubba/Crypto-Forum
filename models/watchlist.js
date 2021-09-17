@@ -11,7 +11,7 @@ Watchlist.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    coinName: {
       type: DataTypes.STRING,
       allowNull: false,
     },

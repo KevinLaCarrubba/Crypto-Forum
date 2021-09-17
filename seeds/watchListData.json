@@ -1,0 +1,14 @@
+[
+    {
+       "coinName": "bitcoin",
+       "user_id": 1
+    },
+    {
+       "coinName": "solana",
+       "user_id": 1
+    },
+    {
+       "coinName": "chainlink",
+       "user_id": 2
+    }
+]
