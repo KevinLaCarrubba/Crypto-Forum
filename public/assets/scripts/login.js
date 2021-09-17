@@ -1,5 +1,6 @@
 const logInFormHandler = async (event) => {
     event.preventDefault();
+    console.log('logInFormHandler');
 
     const email = document.querySelector('#login-email').value.trim();
     const password = document.querySelector('#login-password').value.trim();
@@ -15,12 +16,11 @@ const logInFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/index');
+            document.location.replace('/');
         } else {
             alert(response.statusText);
         }
     }
 };
 
-document.querySelector('.login-form');
-document.addEventListener('submit', logInFormHandler);
+document.querySelector('.login-form').addEventListener('submit', logInFormHandler);

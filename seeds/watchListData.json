@@ -1,11 +1,14 @@
 [
     {
-       "coinName": "bitcoin"
+       "coinName": "bitcoin",
+       "user_id": 1
     },
     {
-       "coinName": "solana"
+       "coinName": "solana",
+       "user_id": 1
     },
     {
-       "coinName": "chainlink"
+       "coinName": "chainlink",
+       "user_id": 2
     }
 ]

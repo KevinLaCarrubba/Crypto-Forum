@@ -30,60 +30,77 @@ const path = require("path");
 
 //
 
-router.get("/project/:id", async (req, res) => {
-  try {
-    const projectData = await Project.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ["name"],
-        },
-      ],
-    });
-
-    const project = projectData.get({ plain: true });
-
-    res.render("project", {
-      ...project,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+router.get("/", (req, res) => {
+  console.log('GET /');
+  res.sendFile(path.join(__dirname, "../public/pages/index.html"));
 });
+
+// router.get("/project/:id", async (req, res) => {
+//   try {
+//     const projectData = await Project.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: User,
+//           attributes: ["name"],
+//         },
+//       ],
+//     });
+
+//     const project = projectData.get({ plain: true });
+
+//     res.render("project", {
+//       ...project,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // Use withAuth middleware to prevent access to route
-router.get("/profile", withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-      include: [{ model: Project }],
-    });
+// router.get("/profile", withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ["password"] },
+//       include: [{ model: Project }],
+//     });
 
-    const user = userData.get({ plain: true });
+//     const user = userData.get({ plain: true });
 
-    res.render("profile", {
-      ...user,
-      logged_in: true,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render("profile", {
+//       ...user,
+//       logged_in: true,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
+//redirect to a route that shows the main page, when user has already logged in
 router.get("/login", (req, res) => {
+  console.log('GET /login');
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("/profile");
+    res.redirect("/");
+    //
     return;
   }
 
-  res.render("login");
+  res.sendFile(path.join(__dirname, '../public/pages/login.html'));
 });
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/pages/index.html"));
+
+//
+router.get('/signUp', (req, res) => {
+  console.log('GET /signUp');
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+
+  res.sendFile(path.join(__dirname, '../public/pages/signup.html'));
 });
+
 module.exports = router;
 
 //added session to fix server
