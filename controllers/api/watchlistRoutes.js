@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { watchlist } = require("../../models");
+const { Watchlist } = require("../../models");
 const withAuth = require("../../helpers/utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
