@@ -1,0 +1,10 @@
+[
+    {
+        "image": "image",
+        "coinName": "Bitcoin",
+        "coinPrice": "48000",
+        "coinHigh": "high",
+        "coinLow": "low"
+
+    }
+]
