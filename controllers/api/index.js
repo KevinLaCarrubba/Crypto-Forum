@@ -7,6 +7,6 @@ const watchlistRoutes = require("./watchlistRoutes");
 router.use("/users", userRoutes);
 router.use("/comments", commentRoutes);
 router.use("/project", projectRoutes);
-router.use("/watchlist", watchlistRoutes);
+// router.use("/watchlist", watchlistRoutes);
 
 module.exports = router;
