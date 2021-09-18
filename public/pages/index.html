@@ -68,7 +68,7 @@
           </div>
 
           <button
-            class="btn btn-outline-primary my-2 my-sm-0"
+            class="btn btn-outline-secondary my-2 my-sm-0"
             type="submit"
             id="search-button"
             data-toggle="modal"
@@ -107,7 +107,12 @@
                   >
                     Close
                   </button>
-                  <button type="button" class="btn btn-primary">
+                  <button
+                    type="button"
+                    id="add-to-watchlist"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
                     Add to Watchlist
                   </button>
                 </div>
@@ -179,24 +184,24 @@
               >
                 Search
               </button>
+              <!-- COMMENTS WILL APPEND HERE I BELIEVE -->
             </div>
-            <!-- COMMENTS WILL APPEND HERE I BELIEVE -->
           </section>
         </div>
         <div class="col-4 list-container">
           <div>
-            <h3 class="watch-list">Watch List</h3>
+            <h3 id="watch-list">Watch List</h3>
           </div>
           <div class="card">
             <ul class="list-group">
               <li class="list-group-item">
-                <a href="https://coinmarketcap.com/currencies/bitcoin/">
+                <a href="/login">
                   <img
-                    src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579"
+                    src="../assets/images/CryptoTalkLogo.jpg"
                     alt="bitcoin logo"
                     class="card-image"
                   />
-                  Bitcoin: $48000 High: $48521 Low:$47652
+                  Log In to use watch list
                 </a>
               </li>
             </ul>
@@ -209,7 +214,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
   <script src="../assets/js/cryptoTicker.js"></script>
-  <script src="../assets/js/watchList.js"></script>
+  <script src="../assets/js/searchbar.js"></script>
   <script src="../assets/js/autoSearch.js"></script>
   <!-- add space for comments to get pushed into (comment container) -->
 </html>

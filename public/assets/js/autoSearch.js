@@ -22,7 +22,7 @@ searchFiller();
 searchValue.onkeyup = (e) => {
   //set userInput variable to key pressed targer
   let userInput = e.target.value;
-  console.log(userInput);
+  // console.log(userInput);
   //set an empty array to put possibilities into
   let typingArray = [];
   if (userInput) {
@@ -56,11 +56,11 @@ function showPossible(list) {
 //onclick listener
 document.body.addEventListener("click", liSelect);
 function liSelect(event) {
-  console.log(event);
+  // console.log(event);
   if (!event.target.classList.contains("populate-search-bar")) {
     return;
   }
   var fillText = event.target.innerHTML;
-  console.log(fillText);
+  // console.log(fillText);
   searchValue.value = fillText;
 }
