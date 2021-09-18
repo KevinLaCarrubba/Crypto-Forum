@@ -42,14 +42,11 @@ body {
   background-color: black;
 }
 
-.overflow {
-  overflow: hidden;
-}
-
 .searchResults {
   list-style-type: none;
   overflow: auto;
   max-height: 200px;
+  max-width: 200px;
   position: absolute;
   background-color: darkgrey;
   z-index: 1;
