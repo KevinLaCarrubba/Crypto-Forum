@@ -89,3 +89,17 @@ addButton.addEventListener("click", (event) => {
   //clear out watchlist data
   watchListData = [];
 });
+
+// const newFormHandler = async (event) => {
+//   event.preventDefault();
+
+//   await fetch(`/api/watchlist`, {
+//     method: "POST",
+//     body: JSON.stringify({
+//       title,
+//       body,
+//     }),
+//     headers: { "Content-Type": "application/json" },
+//   });
+//   commentPosts.push();
+// };
