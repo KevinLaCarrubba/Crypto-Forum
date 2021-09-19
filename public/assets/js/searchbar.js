@@ -1,8 +1,10 @@
 var searchBarInfo = [];
+var watchListData = [];
 var searchButton = document.getElementById("search-button");
 var searchValue = document.getElementById("main-search");
 var coinNameEL = document.getElementById("coinName");
 var modalBody = document.querySelector(".modal-body");
+var closeButton = document.getElementById("close-modal");
 
 searchButton.addEventListener("click", searchBar);
 // console.log(searchBarInfo);
@@ -29,6 +31,7 @@ function searchBar() {
         highPrice: coinHigh,
         lowPrice: coinLow,
       };
+      watchListData.push(searchBarApiData);
       searchBarInfo.push(searchBarApiData);
       renderModal();
       searchBarInfo = [];
@@ -44,7 +47,7 @@ function renderModal() {
   coinImage.classList.add("modal-image");
   coinImage.src = searchBarInfo[0].image;
   var titleText = document.createTextNode(`${searchBarInfo[0].name}`);
-  watchListData.push(searchBarInfo[0].name);
+  // watchListData.push(searchBarInfo[0].name);
   coinNameEL.appendChild(coinImage);
   coinNameEL.appendChild(titleText);
   var ul = document.createElement("ul");
@@ -78,14 +81,61 @@ function clearModal() {
   modalBody.innerHTML = "";
 }
 
-watchListData = [];
 var addButton = document.getElementById("add-to-watchlist");
-var watchListMainApped = document.getElementById("watch-list");
+var watchListMainAppend = document.getElementById("watch-list");
 
 //add event listener to add to watchlist button
-addButton.addEventListener("click", (event) => {
+addButton.addEventListener("click", newWatchlistItem);
+closeButton.addEventListener("click", (event) => {
   event.preventDefault();
-  // console.log(watchListData);
-  //clear out watchlist data
   watchListData = [];
 });
+// event.preventDefault();
+//   console.log(watchListData);
+//   if (watchListData) {
+//     const response = await fetch("api/watchlist", {
+//       method: "POST",
+//       body: JSON.stringify({ coinName, user_id }),
+//       headers: { "Content-Type": "application/json" },
+//     });
+
+//     if (response.ok) {
+//       renderWatchlist();
+//     } else {
+//       alert(response.statusText);
+//     }
+//   }
+// renderWatchlist();
+// watchListData = [];
+var cardDiv = document.getElementById("card-list");
+function newWatchlistItem() {
+  var createCardUl = document.createElement("ul");
+  createCardUl.classList.add("list-group");
+  console.log(watchListData);
+  event.preventDefault();
+  watchListData.forEach((item) => {
+    //
+    // var createCardDiv = document.createElement("div");
+    // createCardDiv.classList.add("card");
+
+    var createCardLi = document.createElement("li");
+    createCardLi.classList.add("list-group-item");
+    var createCardLink = document.createElement("a");
+    var createcoinImg = document.createElement("img");
+    createcoinImg.classList.add("card-image");
+    createcoinImg.src = item.image;
+    var urlText = document.createTextNode(
+      `${item.name}    Current price: $${item.currentPrice}    24-Hour Low: $${item.lowPrice}    24-Hour High: $${item.highPrice}`
+    );
+    createCardLink.appendChild(createcoinImg);
+    createCardLink.appendChild(urlText);
+    createCardLink.href = `https://coinmarketcap.com/currencies/${item.name}/`;
+    createCardLi.appendChild(createCardLink);
+    createCardUl.appendChild(createCardLi);
+    cardDiv.appendChild(createCardUl);
+
+    // createCardDiv.appendChild(watchListMainAppend);
+  });
+
+  watchListData = [];
+}

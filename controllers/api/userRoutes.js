@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, Comment } = require("../../models");
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   const userData = await User.findAll().catch((err) => {
     res.json(err);
   });
@@ -50,7 +50,7 @@ router.post("/logout", (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-  console.log("POST /signUp");
+  // console.log("POST /signUp");
   try {
     const userData = await User.create(req.body);
 
@@ -68,7 +68,7 @@ router.post("/signup", async (req, res) => {
 
 //url endpoint: /api/users/login_user
 router.get("/login_user", (req, res) => {
-  console.log("GET /login_user");
+  // console.log("GET /login_user");
   if (req.session.logged_in === true) {
     res.status(200).json({ user_id: req.session.user_id, logged_in: true });
   } else {

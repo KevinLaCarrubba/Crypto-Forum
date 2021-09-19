@@ -104,6 +104,7 @@
                     type="button"
                     class="btn btn-secondary"
                     data-dismiss="modal"
+                    id="close-modal"
                   >
                     Close
                   </button>
@@ -164,48 +165,64 @@
         </div>
       </div>
     </div>
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-8">
-          <section id="comment-form">
-            <div>
-              <h3>Comments</h3>
-            </div>
-            <div>
-              <input
-                class="form-control form-control-lg"
-                type="text"
-                placeholder=" New Comment"
-              />
-              <button
-                class="btn btn-outline-secondary my-2 my-sm-0"
-                type="submit"
-                id="comment-button"
-              >
-                Search
-              </button>
-              <!-- COMMENTS WILL APPEND HERE I BELIEVE -->
-            </div>
-          </section>
+          <form action="">
+            <section id="comment-form">
+              <div>
+                <h3>Comments</h3>
+              </div>
+              <div>
+                <input
+                  class="form-control form-control-lg"
+                  type="text"
+                  placeholder=" New Comment"
+                  id="new-comment"
+                />
+                <button
+                  class="btn btn-outline-secondary my-2 my-sm-0"
+                  type="submit"
+                  id="comment-button"
+                >
+                  Add comment
+                </button>
+                <!-- COMMENTS WILL APPEND HERE I BELIEVE -->
+              </div>
+              <div id="comment-holder">
+                <div class="form-group purple-border">
+                  <label for="userName">User name</label>
+                  <textarea
+                    class="form-control commentbox"
+                    id="exampleFormControlTextarea4"
+                    rows="3"
+                    readonly
+                  >
+Bitcoin to the moon !</textarea
+                  >
+                </div>
+                ​
+                <div class="form-group purple-border">
+                  <label for="userName">User name</label>
+                  <textarea
+                    class="form-control commentbox"
+                    id="exampleFormControlTextarea4"
+                    rows="3"
+                    readonly
+                  >
+Bitcoin will crash !</textarea
+                  >
+                </div>
+              </div>
+            </section>
+          </form>
         </div>
-        <div class="col-4 list-container">
-          <div>
-            <h3 id="watch-list">Watch List</h3>
-          </div>
-          <div class="card">
-            <ul class="list-group">
-              <li class="list-group-item">
-                <a href="/login">
-                  <img
-                    src="../assets/images/CryptoTalkLogo.jpg"
-                    alt="bitcoin logo"
-                    class="card-image"
-                  />
-                  Log In to use watch list
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="col-4 list-container" id="watch-list">
+          <h3>Watch List</h3>
+          <div id="card-list" class="card">
+           
+
         </div>
       </div>
     </div>
@@ -216,5 +233,6 @@
   <script src="../assets/js/cryptoTicker.js"></script>
   <script src="../assets/js/searchbar.js"></script>
   <script src="../assets/js/autoSearch.js"></script>
+  <script src="../assets/js/comment.js"></script>
   <!-- add space for comments to get pushed into (comment container) -->
 </html>
