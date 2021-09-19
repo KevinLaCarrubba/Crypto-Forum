@@ -20,9 +20,9 @@
 //   .querySelector('#new-comment-form')
 //   .addEventListener('submit', newFormHandler);
 
-var commentHold = document.getElementbyId("comment-holder");
+// var commentHold = document.getElementbyId("comment-holder");
 var commentPosts = [];
-var commentBodyEl = document.getElementbyId("comment-body");
+// var commentBodyEl = document.getElementbyId("comment-body");
 
 const newFormHandler = async (event) => {
   event.preventDefault();
@@ -59,18 +59,18 @@ function renderComments() {
   var commentText = document.createTextNode(`${commentPosts.body}`);
   commentTextArea.appendChild(commentText);
 
-  <div id="comment-holder">
-    <div class="form-group purple-border">
-      <label for="userName">User name</label>
-      <textarea
-        class="form-control commentbox"
-        id="exampleFormControlTextarea4"
-        rows="3"
-        readonly
-      >
-        Bitcoin to the moon !
-      </textarea>
-    </div>
-    ​
-  </div>;
+  // <div id="comment-holder">
+  //   <div class="form-group purple-border">
+  //     <label for="userName">User name</label>
+  //     <textarea
+  //       class="form-control commentbox"
+  //       id="exampleFormControlTextarea4"
+  //       rows="3"
+  //       readonly
+  //     >
+  //       Bitcoin to the moon !
+  //     </textarea>
+  //   </div>
+  //   ​
+  // </div>;
 }
