@@ -80,7 +80,7 @@ const newCommentAdd = async (event) => {
 function renderComments() {
   event.preventDefault();
   var newComment = newCommentid.value;
-  newCommentid.value = "";
+
   var commentDiv = document.createElement("div");
   commentDiv.classList.add("form-group");
   var textArea = document.createElement("textarea");
@@ -91,6 +91,7 @@ function renderComments() {
   commentDiv.appendChild(textArea);
   commentHolderDiv.appendChild(commentDiv);
   newCommentAdd();
+  newCommentid.value = "";
 }
 
 showOldComments();
