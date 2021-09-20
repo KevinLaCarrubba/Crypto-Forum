@@ -5,9 +5,11 @@ const withAuth = require("../../helpers/utils/auth");
 //url endpoints: /api/watchlist/:id
 // router.get("/:id", withAuth, async (req, res) => {
 router.get("/:id", withAuth, async (req, res) => {
-  console.log("GET /watchlist/:id", req.params.id);
+  // console.log("GET /watchlist/:id", req.params.id);
   try {
-    const userData = await User.findByPk(req.params.id, { include: Watchlist });
+    const userData = await User.findByPk(req.params.id, {
+      include: Watchlist,
+    });
 
     if (!userData) {
       res.status(400).json({ message: "Data not found!" });
@@ -23,7 +25,6 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
-//not sure if this is right
 router.post("/", withAuth, async (req, res) => {
   try {
     const newWatchlist = await Watchlist.create({
@@ -33,6 +34,7 @@ router.post("/", withAuth, async (req, res) => {
     res.status(200).json(newWatchlist);
   } catch (err) {
     {
+      console.log(err);
       res.status(400).json(err);
     }
   }

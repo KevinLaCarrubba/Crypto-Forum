@@ -4,7 +4,6 @@ const withAuth = require("./../helpers/utils/auth");
 const path = require("path");
 
 router.get("/", (req, res) => {
-  console.log("GET /");
   res.sendFile(path.join(__dirname, "../public/pages/index.html"));
 });
 
