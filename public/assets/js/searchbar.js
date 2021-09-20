@@ -174,5 +174,5 @@ function newWatchlistItem() {
     cardDiv.appendChild(createCardUl);
   });
   newListItem();
-  // watchListData = [];
+  watchListData = [];
 }
