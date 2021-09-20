@@ -1,13 +1,18 @@
 var searchBarInfo = [];
 var watchListData = [];
+var watchListDB = [];
 var searchButton = document.getElementById("search-button");
 var searchValue = document.getElementById("main-search");
 var coinNameEL = document.getElementById("coinName");
 var modalBody = document.querySelector(".modal-body");
 var closeButton = document.getElementById("close-modal");
+var cardDiv = document.getElementById("card-list");
+var addButton = document.getElementById("add-to-watchlist");
+var watchListMainAppend = document.getElementById("watch-list");
+var loginStatus = document.getElementById("login-status");
 
 searchButton.addEventListener("click", searchBar);
-// console.log(searchBarInfo);
+
 function searchBar() {
   event.preventDefault();
   var searchBarData = searchValue.value.trim().toLowerCase();
@@ -47,7 +52,6 @@ function renderModal() {
   coinImage.classList.add("modal-image");
   coinImage.src = searchBarInfo[0].image;
   var titleText = document.createTextNode(`${searchBarInfo[0].name}`);
-  // watchListData.push(searchBarInfo[0].name);
   coinNameEL.appendChild(coinImage);
   coinNameEL.appendChild(titleText);
   var ul = document.createElement("ul");
@@ -56,23 +60,19 @@ function renderModal() {
     `Current Price: $${searchBarInfo[0].currentPrice}`
   );
   currentPriceLine.appendChild(currentPriceText);
-
   var coinLowLine = document.createElement("li");
   var coinLowText = document.createTextNode(
     `24 hour Low: $${searchBarInfo[0].lowPrice}`
   );
   coinLowLine.appendChild(coinLowText);
-
   var coinHighLine = document.createElement("li");
   var coinHighText = document.createTextNode(
     `24 Hour High: $${searchBarInfo[0].highPrice}`
   );
   coinHighLine.appendChild(coinHighText);
-
   ul.appendChild(currentPriceLine);
   ul.appendChild(coinLowLine);
   ul.appendChild(coinHighLine);
-
   modalBody.appendChild(ul);
 }
 
@@ -81,61 +81,98 @@ function clearModal() {
   modalBody.innerHTML = "";
 }
 
-var addButton = document.getElementById("add-to-watchlist");
-var watchListMainAppend = document.getElementById("watch-list");
-
-//add event listener to add to watchlist button
 addButton.addEventListener("click", newWatchlistItem);
 closeButton.addEventListener("click", (event) => {
   event.preventDefault();
   watchListData = [];
 });
-// event.preventDefault();
-//   console.log(watchListData);
-//   if (watchListData) {
-//     const response = await fetch("api/watchlist", {
-//       method: "POST",
-//       body: JSON.stringify({ coinName, user_id }),
-//       headers: { "Content-Type": "application/json" },
-//     });
 
-//     if (response.ok) {
-//       renderWatchlist();
-//     } else {
-//       alert(response.statusText);
-//     }
-//   }
-// renderWatchlist();
-// watchListData = [];
-var cardDiv = document.getElementById("card-list");
+const newUserId = async (event) => {
+  await fetch(`api/users/login_user`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      userId = data.user_id;
+      getWatchList();
+    });
+};
+
+const getWatchList = async (event) => {
+  await fetch("api/watchlist/" + userId, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (list) {
+      // console.log(list.Watchlists);
+      var coinNames = [];
+      for (i = 0; i < list.Watchlists.length; i++) {
+        var name = list.Watchlists[i].coinName;
+        coinNames.push(name);
+        // console.log(coinNames);
+      }
+      return coinNames;
+    })
+    .then(function (render) {
+      // console.log(render);
+      var createCardUl = document.createElement("ul");
+      createCardUl.classList.add("list-group");
+      render.forEach((coin) => {
+        var createCardLi = document.createElement("li");
+        createCardLi.classList.add("list-group-item");
+        var createCardLink = document.createElement("a");
+        var urlText = document.createTextNode(`${coin}`);
+        createCardLink.appendChild(urlText);
+        createCardLink.href = `https://coinmarketcap.com/currencies/${coin}/`;
+        createCardLi.appendChild(createCardLink);
+        createCardUl.appendChild(createCardLi);
+        cardDiv.appendChild(createCardUl);
+      });
+    });
+};
+
+newUserId();
+
+const newListItem = async (event) => {
+  // event.preventDefault();
+  var newName = watchListData[0].name.toLowerCase();
+  console.log(newName);
+  await fetch(`/api/watchlist`, {
+    method: "POST",
+    body: JSON.stringify({
+      coinName: newName,
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
+};
+
 function newWatchlistItem() {
   var createCardUl = document.createElement("ul");
   createCardUl.classList.add("list-group");
-  console.log(watchListData);
+  // console.log(watchListData);
   event.preventDefault();
-  watchListData.forEach((item) => {
-    //
-    // var createCardDiv = document.createElement("div");
-    // createCardDiv.classList.add("card");
 
+  watchListData.forEach((item) => {
     var createCardLi = document.createElement("li");
     createCardLi.classList.add("list-group-item");
     var createCardLink = document.createElement("a");
-    var createcoinImg = document.createElement("img");
-    createcoinImg.classList.add("card-image");
-    createcoinImg.src = item.image;
-    var urlText = document.createTextNode(
-      `${item.name}    Current price: $${item.currentPrice}    24-Hour Low: $${item.lowPrice}    24-Hour High: $${item.highPrice}`
-    );
-    createCardLink.appendChild(createcoinImg);
+    // var createcoinImg = document.createElement("img");
+    // createcoinImg.classList.add("card-image");
+    // createcoinImg.src = item.image;
+    var urlText = document.createTextNode(`${item.name}`);
+    // createCardLink.appendChild(createcoinImg);
     createCardLink.appendChild(urlText);
     createCardLink.href = `https://coinmarketcap.com/currencies/${item.name}/`;
     createCardLi.appendChild(createCardLink);
     createCardUl.appendChild(createCardLi);
     cardDiv.appendChild(createCardUl);
-
-    // createCardDiv.appendChild(watchListMainAppend);
   });
-
-  watchListData = [];
+  newListItem();
+  // watchListData = [];
 }
