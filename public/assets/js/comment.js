@@ -67,8 +67,8 @@ const showOldComments = async (event) => {
 const newCommentAdd = async (event) => {
   // event.preventDefault();
   var commentAdd = newCommentid.value;
-  console.log(newName);
-  await fetch(`/api/watchlist`, {
+  // console.log(newName);
+  await fetch(`/api/comments`, {
     method: "POST",
     body: JSON.stringify({
       body: commentAdd,
