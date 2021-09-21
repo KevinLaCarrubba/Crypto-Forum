@@ -1,6 +1,8 @@
 // const newFormHandler = async (event) => {
 //   event.preventDefault();
 
+// const { response } = require("express");
+
 //   const title = document.querySelector('input[name="comment-title"]').value;
 //   const body = document.querySelector('textarea[name="comment-body"]').value;
 
@@ -21,56 +23,77 @@
 //   .addEventListener('submit', newFormHandler);
 
 // var commentHold = document.getElementbyId("comment-holder");
-var commentPosts = [];
 // var commentBodyEl = document.getElementbyId("comment-body");
+// var commentPosts = [];
 
-const newFormHandler = async (event) => {
-  event.preventDefault();
+var newCommentid = document.getElementById("new-comment");
+var commentHolderDiv = document.getElementById("comment-holder");
+var submitComment = document.getElementById("comment-button");
 
+const showOldComments = async (event) => {
+  // event.preventDefault();
+
+  await fetch(`/api/comments`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (comment) {
+      // console.log(comment[0].body);
+      var commentData = [];
+      for (i = 0; i < comment.length; i++) {
+        var commentLoop = comment[i].body;
+        commentData.push(commentLoop);
+      }
+      return commentData;
+    })
+    .then(function (renderComment) {
+      renderComment.forEach((comment) => {
+        console.log(comment);
+        var div = document.createElement("div");
+        div.classList.add("form-group");
+        var text = document.createElement("textarea");
+        text.rows = 3;
+        text.classList.add("form-control", "commentbox");
+        text.innerHTML = comment;
+        div.appendChild(text);
+        commentHolderDiv.appendChild(div);
+      });
+    });
+};
+
+const newCommentAdd = async (event) => {
+  // event.preventDefault();
+  var commentAdd = newCommentid.value;
+  // console.log(newName);
   await fetch(`/api/comments`, {
     method: "POST",
     body: JSON.stringify({
-      title,
-      body,
+      body: commentAdd,
     }),
     headers: { "Content-Type": "application/json" },
   });
-  commentPosts.push();
 };
 
 function renderComments() {
-  var commentHolder = document.createElement("div");
-  commentHolder.id = "comment-holder";
+  event.preventDefault();
+  var newComment = newCommentid.value;
 
   var commentDiv = document.createElement("div");
-  commentDiv.classList.add("form-group", "purple-border");
-
-  commentBodyEl.appendChild(commentHolder);
-  commentBodyEl.appendChild(commentDiv);
-
-  var commentLabel = document.createElement("label");
-  var lableText = document.createTextNode(`${commentPosts.name}`);
-  commentLabel.appendChild(lableText);
-
-  var commentTextArea = document.createElement("textarea");
-  commentTextArea.classList.add("form-control", "commentbox");
-  commentTextArea.id = "exampleFormControlTextarea4";
-  commentTextArea.rows = "3";
-  var commentText = document.createTextNode(`${commentPosts.body}`);
-  commentTextArea.appendChild(commentText);
-
-  // <div id="comment-holder">
-  //   <div class="form-group purple-border">
-  //     <label for="userName">User name</label>
-  //     <textarea
-  //       class="form-control commentbox"
-  //       id="exampleFormControlTextarea4"
-  //       rows="3"
-  //       readonly
-  //     >
-  //       Bitcoin to the moon !
-  //     </textarea>
-  //   </div>
-  //   ​
-  // </div>;
+  commentDiv.classList.add("form-group");
+  var textArea = document.createElement("textarea");
+  textArea.rows = 3;
+  textArea.classList.add("form-control", "commentbox");
+  // textArea.setAttribute("readonly");
+  textArea.innerHTML = newComment;
+  commentDiv.appendChild(textArea);
+  commentHolderDiv.appendChild(commentDiv);
+  newCommentAdd();
+  newCommentid.value = "";
 }
+
+showOldComments();
+
+submitComment.addEventListener("click", renderComments);
