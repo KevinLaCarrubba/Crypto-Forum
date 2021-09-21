@@ -176,3 +176,9 @@ function newWatchlistItem() {
   newListItem();
   watchListData = [];
 }
+
+const deleteClickHandler = async function () {
+  await fetch(`/api/post/${id}`, {
+    method: "DELETE",
+  });
+};
