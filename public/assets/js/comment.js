@@ -49,9 +49,25 @@ const showOldComments = async (event) => {
     //   }
     //   return commentData;
     // })
+
+
+<div class="card">
+                  <div class="card-header d-flex justify-content-between" id="comment-username">
+                    UserName
+                    <button type="button" class="close" id="delete-comment" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <p class = "comment-data">Comment entered here</p> 
+                    </blockquote>
+                  </div>
+                </div>
+
     .then(function (renderComment) {
       renderComment.forEach((comment) => {
-        console.log(comment);
+        // console.log(comment);
         var div = document.createElement("div");
         div.classList.add("form-group");
         var text = document.createElement("textarea");

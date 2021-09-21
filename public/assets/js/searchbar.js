@@ -38,6 +38,7 @@ function searchBar() {
       };
       watchListData.push(searchBarApiData);
       searchBarInfo.push(searchBarApiData);
+      console.log(searchBarInfo);
       renderModal();
       searchBarInfo = [];
     })
@@ -75,18 +76,23 @@ function renderModal() {
   ul.appendChild(coinHighLine);
   modalBody.appendChild(ul);
 }
-
+//Function to clear modal data when closed.
 function clearModal() {
   coinNameEL.innerHTML = "";
   modalBody.innerHTML = "";
 }
 
+//Event Listener to create a new watchlist item
 addButton.addEventListener("click", newWatchlistItem);
+
+//event listener to clear watchlist data when closed is clicked
 closeButton.addEventListener("click", (event) => {
   event.preventDefault();
+
   watchListData = [];
 });
 
+//fetch which user is logged in
 const newUserId = async (event) => {
   await fetch(`api/users/login_user`, {
     method: "GET",
@@ -95,6 +101,7 @@ const newUserId = async (event) => {
     .then(function (response) {
       return response.json();
     })
+    //get the watchlist of the user logged in
     .then(function (data) {
       userId = data.user_id;
       getWatchList();
@@ -113,24 +120,41 @@ const getWatchList = async (event) => {
       // console.log(list.Watchlists);
       var coinNames = [];
       for (i = 0; i < list.Watchlists.length; i++) {
-        var name = list.Watchlists[i].coinName;
+        var name = list.Watchlists[i];
         coinNames.push(name);
         // console.log(coinNames);
       }
       return coinNames;
     })
     .then(function (render) {
-      // console.log(render);
+      console.log(render);
       var createCardUl = document.createElement("ul");
       createCardUl.classList.add("list-group");
       render.forEach((coin) => {
         var createCardLi = document.createElement("li");
         createCardLi.classList.add("list-group-item");
         var createCardLink = document.createElement("a");
-        var urlText = document.createTextNode(`${coin}`);
+
+        var createcoinImg = document.createElement("img");
+        createcoinImg.classList.add("card-image");
+        createcoinImg.src = coin.coinImage;
+
+        var urlText = document.createTextNode(`${coin.coinName}`);
+        createCardLink.appendChild(createcoinImg);
         createCardLink.appendChild(urlText);
-        createCardLink.href = `https://coinmarketcap.com/currencies/${coin}/`;
+        createCardLink.href = `https://coinmarketcap.com/currencies/${coin.coinName}/`;
+        var createCardButton = document.createElement("button");
+        createCardButton.setAttribute("aria-label", "Close");
+        createCardButton.setAttribute("id", "delete-watchlist");
+        createCardButton.setAttribute("type", "button");
+        createCardButton.classList.add("close");
+        var createCardSpan = document.createElement("span");
+        createCardSpan.setAttribute("aria-hidden", "true");
+        var createXtext = document.createTextNode(`×`);
+        createCardSpan.appendChild(createXtext);
+        createCardButton.appendChild(createCardSpan);
         createCardLi.appendChild(createCardLink);
+        createCardLi.appendChild(createCardButton);
         createCardUl.appendChild(createCardLi);
         cardDiv.appendChild(createCardUl);
       });
@@ -142,11 +166,13 @@ newUserId();
 const newListItem = async (event) => {
   // event.preventDefault();
   var newName = watchListData[0].name.toLowerCase();
+  var newImgUrl = watchListData[0].image;
   console.log(newName);
   await fetch(`/api/watchlist`, {
     method: "POST",
     body: JSON.stringify({
       coinName: newName,
+      coinImage: newImgUrl,
     }),
     headers: { "Content-Type": "application/json" },
   });
@@ -162,14 +188,25 @@ function newWatchlistItem() {
     var createCardLi = document.createElement("li");
     createCardLi.classList.add("list-group-item");
     var createCardLink = document.createElement("a");
-    // var createcoinImg = document.createElement("img");
-    // createcoinImg.classList.add("card-image");
-    // createcoinImg.src = item.image;
+    var createcoinImg = document.createElement("img");
+    createcoinImg.classList.add("card-image");
+    createcoinImg.src = item.image;
     var urlText = document.createTextNode(`${item.name}`);
-    // createCardLink.appendChild(createcoinImg);
+    createCardLink.appendChild(createcoinImg);
     createCardLink.appendChild(urlText);
     createCardLink.href = `https://coinmarketcap.com/currencies/${item.name}/`;
+    var createCardButton = document.createElement("button");
+    createCardButton.setAttribute("aria-label", "Close");
+    createCardButton.setAttribute("id", "delete-watchlist");
+    createCardButton.setAttribute("type", "button");
+    createCardButton.classList.add("close");
+    var createCardSpan = document.createElement("span");
+    createCardSpan.setAttribute("aria-hidden", "true");
+    var createXtext = document.createTextNode(`×`);
+    createCardSpan.appendChild(createXtext);
+    createCardButton.appendChild(createCardSpan);
     createCardLi.appendChild(createCardLink);
+    createCardLi.appendChild(createCardButton);
     createCardUl.appendChild(createCardLi);
     cardDiv.appendChild(createCardUl);
   });
