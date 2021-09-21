@@ -16,7 +16,6 @@ router.get("/:id", withAuth, async (req, res) => {
       return;
     }
 
-    console.log(userData);
     res.status(200).json(userData);
     return;
   } catch (err) {
