@@ -17,30 +17,81 @@
     <title>Sign Up!</title>
   </head>
   <body>
-    <div class="col-md-6 login-form-2">
-      <div class="login-logo">
-        <img src="#" alt="" />
+  <div id="content" class="flex">
+    <div class="">
+      <div class="page-content page-container" id="page-content">
+        <div class="padding">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <strong>Sign up for Crypto Talk</strong>
+                </div>
+                <div class="card-body">
+                  <form class ="login-form" id="signup-form">
+                    <div class="form-group">
+                      <label class="text-muted"  for="username-input-signup"
+                        >Username</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        id="username-input-signup"
+                        placeholder="Enter username"
+                        value=""
+                      />
+                      <small id="emailHelp" class="form-text text-muted"
+                        >Get creative with your username</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="text-muted" for="email-input-signup"
+                        >Email address</label
+                      ><input
+                        type="email"
+                        class="form-control"
+                        id="email-input-signup"
+                        placeholder="Enter email"
+                        value=""
+                      />
+                      <small id="emailHelp" class="form-text text-muted"
+                        >We don't share email with anyone</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="text-muted" for="password-input-signup"
+                        >Password</label
+                      ><input
+                        type="password"
+                        class="form-control"
+                        id="password-input-signup"
+                        placeholder="Password"
+                        value=""
+                      />
+                      <small id="passwordHelp" class="form-text text-muted"
+                        >your password is saved in encrypted form</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <button
+                        type="submit"
+                        id="signup-btn"
+                        class="btn btn-primary btnSubmit"
+                      >
+                        Sign Up
+                      </button>
+                    </div>
+                  
+                  </form>
+                  <a href="/login">Login instead</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <form id="signup-form" class="card-body">
-      <h3>User Sign Up</h3>
-      <div>
-        <label for="username-input-signup">Username</label>
-        <input type="text" id="username-input-signup" />
-      </div>
-      <div>
-        <label for="username-input-signup">Email</label>
-        <input type="text" id="email-input-signup" />
-      </div>
-      <div>
-        <label for="password-input-signup">Password</label>
-        <input type="password" id="password-input-signup" />
-      </div>
-      <button type="submit" id="signup-btn" class="btn">Signup!</button>
-      <a href="/login">Login instead</a>
-    </form>
-
+  </div>
     <script src="../assets/scripts/signUp.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>

@@ -2,6 +2,25 @@ var newCommentid = document.getElementById("new-comment");
 var commentHolderDiv = document.getElementById("comment-holder");
 var submitComment = document.getElementById("comment-button");
 
+const findUserId = async (event) => {
+  await fetch(`api/users/login_user`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    //get the watchlist of the user logged in
+    .then(function (data) {
+      // console.log(data);
+      userId = data.user_id;
+      console.log(userId);
+      // getWatchList();
+    });
+};
+
+findUserId();
+
 const showOldComments = async (event) => {
   await fetch(`/api/comments`, {
     method: "GET",
@@ -11,8 +30,9 @@ const showOldComments = async (event) => {
       return response.json();
     })
     .then(function (renderComment) {
+      console.log(renderComment);
       renderComment.forEach((comment) => {
-        console.log(comment);
+        // console.log(comment);
         var cardDiv = document.createElement("div");
         cardDiv.classList.add("card");
         var headerDiv = document.createElement("div");
@@ -70,7 +90,7 @@ const newCommentAdd = async (event) => {
 };
 
 function deleteComments(id) {
-  console.log("hello");
+  // console.log("hello");
 
   fetch("/api/comments/" + id, {
     method: "delete",
@@ -117,7 +137,7 @@ function renderComments(event) {
   cardDiv.appendChild(cardBodyDiv);
   deleteBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    deleteComments(comments.id);
+    deleteComments(comment.id);
   });
   commentHolderDiv.appendChild(cardDiv);
   newCommentAdd();

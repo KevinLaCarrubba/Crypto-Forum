@@ -4,6 +4,7 @@ const withAuth = require("../../helpers/utils/auth");
 
 //url endpoints: /api/watchlist/:id
 // router.get("/:id", withAuth, async (req, res) => {
+
 router.get("/:id", withAuth, async (req, res) => {
   // console.log("GET /watchlist/:id", req.params.id);
   try {
@@ -49,7 +50,9 @@ router.delete("/:id", withAuth, async (req, res) => {
     });
 
     if (!deleteWatchList) {
-      res.status(404).json({ message: "No comment found with this id!" });
+      res
+        .status(404)
+        .json({ message: "No watchlist item found with this id!" });
       return;
     }
 
