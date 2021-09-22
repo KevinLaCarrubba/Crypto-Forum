@@ -31,6 +31,8 @@ Copy and paste
 git clone
 
       https://github.com/KevinLaCarrubba/Crypto-Forum.git
+      npm i
+      npm start
 
 or visit at [Crypto Talk](https://cryptotalk-forum.herokuapp.com/)
 
