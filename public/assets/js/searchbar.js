@@ -6,7 +6,7 @@ var searchValue = document.getElementById("main-search");
 var coinNameEL = document.getElementById("coinName");
 var modalBody = document.querySelector(".modal-body");
 var closeButton = document.getElementById("close-modal");
-var cardDiv = document.getElementById("card-list");
+var watchlistCardDiv = document.getElementById("card-list");
 var addButton = document.getElementById("add-to-watchlist");
 var watchListMainAppend = document.getElementById("watch-list");
 var loginStatus = document.getElementById("login-status");
@@ -127,7 +127,7 @@ const getWatchList = async (event) => {
       return coinNames;
     })
     .then(function (render) {
-      console.log(render);
+      // console.log(render);
       var createCardUl = document.createElement("ul");
       createCardUl.classList.add("list-group");
       render.forEach((coin) => {
@@ -156,7 +156,7 @@ const getWatchList = async (event) => {
         createCardLi.appendChild(createCardLink);
         createCardLi.appendChild(createCardButton);
         createCardUl.appendChild(createCardLi);
-        cardDiv.appendChild(createCardUl);
+        watchlistCardDiv.appendChild(createCardUl);
       });
     });
 };
@@ -208,7 +208,7 @@ function newWatchlistItem() {
     createCardLi.appendChild(createCardLink);
     createCardLi.appendChild(createCardButton);
     createCardUl.appendChild(createCardLi);
-    cardDiv.appendChild(createCardUl);
+    watchlistCardDiv.appendChild(createCardUl);
   });
   newListItem();
   watchListData = [];
