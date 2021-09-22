@@ -103,13 +103,14 @@ const newUserId = async (event) => {
     })
     //get the watchlist of the user logged in
     .then(function (data) {
+      // console.log(data);
       userId = data.user_id;
       getWatchList();
     });
 };
 
 const getWatchList = async (event) => {
-  console.log(userId);
+  // console.log(userId);
   await fetch("api/watchlist/" + userId, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -118,7 +119,7 @@ const getWatchList = async (event) => {
       return response.json();
     })
     .then(function (list) {
-      console.log(list);
+      console.log(list.username);
       console.log(list.Watchlists);
       var coinNames = [];
       for (i = 0; i < list.Watchlists.length; i++) {
@@ -133,6 +134,7 @@ const getWatchList = async (event) => {
       var createCardUl = document.createElement("ul");
       createCardUl.classList.add("list-group");
       render.forEach((coin) => {
+        console.log(coin);
         var createCardLi = document.createElement("li");
         createCardLi.classList.add("list-group-item");
         var createCardLink = document.createElement("a");
@@ -159,6 +161,11 @@ const getWatchList = async (event) => {
         createCardLi.appendChild(createCardButton);
         createCardUl.appendChild(createCardLi);
         watchlistCardDiv.appendChild(createCardUl);
+
+        createCardButton.addEventListener("click", function (event) {
+          event.preventDefault();
+          deleteWatchlist(coin.id);
+        });
       });
     });
 };
@@ -211,13 +218,26 @@ function newWatchlistItem() {
     createCardLi.appendChild(createCardButton);
     createCardUl.appendChild(createCardLi);
     watchlistCardDiv.appendChild(createCardUl);
+    createCardButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      deleteWatchlist(item.id);
+    });
   });
   newListItem();
   watchListData = [];
 }
 
-const deleteClickHandler = async function () {
-  await fetch(`/api/post/${id}`, {
-    method: "DELETE",
-  });
-};
+function deleteWatchlist(id) {
+  // console.log("hello");
+
+  fetch("/api/watchlist/" + id, {
+    method: "delete",
+  })
+    .then(function (data) {
+      console.log(data);
+      location.reload();
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+}
