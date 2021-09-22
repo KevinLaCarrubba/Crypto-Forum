@@ -70,7 +70,11 @@ router.post("/signup", async (req, res) => {
 router.get("/login_user", (req, res) => {
   // console.log("GET /login_user");
   if (req.session.logged_in === true) {
-    res.status(200).json({ user_id: req.session.user_id, logged_in: true });
+    res.status(200).json({
+      user_id: req.session.user_id,
+      logged_in: true,
+      username: req.body.username,
+    });
   } else {
     res.status(400).json({ message: "User not logged in!" });
   }
