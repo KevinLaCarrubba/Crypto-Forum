@@ -50,3 +50,12 @@ body {
 .was-validated .form-check-input:invalid ~ .form-check-label {
   color: #f54394;
 }
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  align-content: center;
+  justify-content: center;
+}
