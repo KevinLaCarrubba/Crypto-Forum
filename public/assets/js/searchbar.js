@@ -109,6 +109,7 @@ const newUserId = async (event) => {
 };
 
 const getWatchList = async (event) => {
+  console.log(userId);
   await fetch("api/watchlist/" + userId, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -117,7 +118,8 @@ const getWatchList = async (event) => {
       return response.json();
     })
     .then(function (list) {
-      // console.log(list.Watchlists);
+      console.log(list);
+      console.log(list.Watchlists);
       var coinNames = [];
       for (i = 0; i < list.Watchlists.length; i++) {
         var name = list.Watchlists[i];
